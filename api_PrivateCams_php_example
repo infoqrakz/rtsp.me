@@ -15,4 +15,5 @@ $result = file_get_contents($url, false, stream_context_create(array(
 )));
 $json=json_decode($result,yes);
 echo "<iframe width='640' height='480' src='{$json[cameras][0][url]}' frameborder='0' allowfullscreen></iframe>";
+echo "<img src='{$json[cameras][0][poster]}'>";
 ?>
