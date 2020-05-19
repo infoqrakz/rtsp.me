@@ -1,4 +1,19 @@
 <?php
+# $url is API
+###   Variable ###
+#
+# email & password - Access to rtsp.me account  (required) 
+# 
+# id - Broadcating ID (optional). If missing, give the list of broadcasts. 
+# Example: permanent link - https://rtsp.me/embed/KPbwo57M/  . id is KPbwo57M
+# 
+# ip - ipv4 address (optional) . If missing, anyone who has a link can watch the broadcast.
+#
+#########
+#
+# poster - jpg url  (need ip in your request)
+#
+#########
 $url = 'https://rtsp.me/api/';
 $params = array(
     'email' => 'PUT_EMAIL', 
@@ -14,6 +29,8 @@ $result = file_get_contents($url, false, stream_context_create(array(
     )
 )));
 $json=json_decode($result,yes);
+$ip=$_SERVER['REMOTE_ADDR'];  
+echo "Your ip - $ip";
 echo "<iframe width='640' height='480' src='{$json[cameras][0][url]}' frameborder='0' allowfullscreen></iframe>";
 echo "<img src='{$json[cameras][0][poster]}'>";
 ?>
