@@ -7,7 +7,7 @@
 # id - Broadcating ID (optional). If missing, give the list of broadcasts. 
 # Example: permanent link - https://rtsp.me/embed/KPbwo57M/  . id is KPbwo57M
 # 
-# ip - ipv4 address (optional) . If missing, anyone who has a link can watch the broadcast.
+# ip - Client ipv4 address (optional) . If missing, anyone who has a link can watch the broadcast.
 #
 #########
 #
