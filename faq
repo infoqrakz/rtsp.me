@@ -1,0 +1,57 @@
+To create a broadcast, you need:
+
+1. Camera supporting RTSP and H.264.
+
+Recommended cameras: Hikvision, Dahua, Line.
+You need to know the RTSP link (it can be found on the camera manufacturer's website), 
+for example: login - admin, password - pass , ip - 8.8.8.8 , port - 554 or 9784.
+
+Hikvision −
+rtsp://admin:pass@8.8.8.8:554 /Streaming/Channels/101 ;
+rtsp://admin:pass@8.8.8.8:554 /Streaming/Channels/102 .
+
+Dahua-
+rtsp://admin:pass@8.8.8.8:554/cam/realmonitor?channel=1&subtype=0 ;
+rtsp://admin:pass@8.8.8.8:554/cam/realmonitor?channel=1&subtype=1 .
+
+line -
+rtsp://admin:pass@8.8.8.8: 9784/cameras/0/streaming/main?audio=1 ;
+rtsp://admin:pass@8.8.8.8:9784/cameras/0/streaming/sub .
+
+
+Recommended camera settings:
+codec − H.264;
+FPS - 25;
+GOP (i-frame) - 50 fps (2 sec).
+
+2. Static IP, which you can request from your ISP.
+
+If the IP address is real dynamic, you can use Dynamic Dns services (https://www.noip.com/ , https://account.dyn.com/).
+
+If the IP address is gray, you can install the demo version of the Line video surveillance system and connect a camera to it.
+
+3. Port-mapping.
+
+You need to port-map port 554 or 9784 to your camera's local IP, for this you need to have administrator access to your router settings.
+
+Rule example:
+
+External IP - External port - Internal IP - Internal port - Protocol
+ANY 554 192.168.1.100 554 TCP/UDP.
+
+Type in a search engine a query like: “your router name + port mapping”.
+
+If you need to connect multiple cameras, use different external ports.
+
+Rule example:
+External IP - External port - Internal IP - Internal port - Protocol
+ANY 554 192.168.1.100 554 TCP/UDP
+ANY 555 192.168.1.101 554 TCP/UDP.
+ 
+After setting up port-mapping, check if the port is open - https://portscaner.ru/.
+
+4. Once configured, you can place the HTML code on your website
+
+<iframe width="640" height="480" src="https://rtsp.me/embed/KPbwo57M/" frameborder="0" allowfullscreen></iframe>
+or link: 
+https://rtsp.me/embed/KPbwo57M/
