@@ -1,14 +1,16 @@
 <?php
+#  How to bulk add cameras?
 # $url is API
 ###   Variable ###
 #
 # email & password - Access to rtsp.me account  (required) 
 # 
-# id - Broadcating ID (optional). If missing, give the list of broadcasts. 
-# Example: permanent link - https://rtsp.me/embed/KPbwo57M/  . id is KPbwo57M
-# 
-# ip - Client ipv4 address (optional) . If missing, anyone who has a link can watch the broadcast.
-#
+# rtsp - Your rtsp link
+# Example: permanent link - rtsp://admin:123456@8.8.8.8:554/11   
+# #
+# location - Data center. 
+# Options: usa , europe , asia.   
+# #
 #########
 #
 # poster - jpg url  (need ip in your request)
@@ -18,8 +20,8 @@ $url = 'https://rtsp.me/api/';
 $params = array(
     'email' => 'PUT_EMAIL', 
     'password' => 'PUT_PASSWORD', 
-    'id' => 'PUT_ID', 
-    'ip' => 'PUT_IP', 
+    'rtsp' => 'PUT_RTSP', 
+    'location' => 'usa', 
 );
 $result = file_get_contents($url, false, stream_context_create(array(
     'http' => array(
@@ -29,16 +31,11 @@ $result = file_get_contents($url, false, stream_context_create(array(
     )
 )));
 $json=json_decode($result,yes);
-$ip=$_SERVER['REMOTE_ADDR'];  
-echo "Your ip - $ip";
+ echo "Your ip - $ip";
 echo "<iframe width='640' height='480' src='{$json[cameras][0][url]}' frameborder='0' allowfullscreen></iframe>";
 echo "<img src='{$json[cameras][0][poster]}'>";
 exit;
 ?>
-
-# Example  curl request
- 
-curl -d "email=info@mail.kz&password=123456&id=KPbwo57M&ip=77.1.1.242" -X POST https:/rtsp.me/api/ 
 
 # Example  json response
 
