@@ -1,1 +1,55 @@
+<?php
+# $url is API
+###   Variable ###
+#
+# email & password - Access to rtsp.me account  (required) 
+# 
+# id - Broadcating ID (optional). If missing, give the list of broadcasts. 
+# Example: permanent link - https://rtsp.me/embed/KPbwo57M/  . id is KPbwo57M
+# 
+# ip - Client ipv4 address (optional) . If missing, anyone who has a link can watch the broadcast.
+#
+#########
+#
+# poster - jpg url  (need ip in your request)
+#
+#########
+$url = 'https://rtsp.me/api/';
+$params = array(
+    'email' => 'PUT_EMAIL', 
+    'password' => 'PUT_PASSWORD', 
+    'id' => 'PUT_ID', 
+    'ip' => 'PUT_IP', 
+);
+$result = file_get_contents($url, false, stream_context_create(array(
+    'http' => array(
+        'method'  => 'POST',
+        'header'  => 'Content-type: application/x-www-form-urlencoded',
+        'content' => http_build_query($params)
+    )
+)));
+$json=json_decode($result,yes);
+$ip=$_SERVER['REMOTE_ADDR'];  
+echo "Your ip - $ip";
+echo "<iframe width='640' height='480' src='{$json[cameras][0][url]}' frameborder='0' allowfullscreen></iframe>";
+echo "<img src='{$json[cameras][0][poster]}'>";
+exit;
+?>
 
+# Example  curl request
+ 
+curl -d "email=info@mail.kz&password=123456&id=KPbwo57M&ip=77.1.1.242" -X POST https:/rtsp.me/api/ 
+
+# Example  json response
+
+{
+   "cameras":[
+      {
+         "id":"KPbwo57M",
+         "name":"For Jon from San Antonio",
+         "url":"https://rtsp.me/personal/KPbwo57M/NzcuMjMzLjQuMjQy/NdoVDckKAIlP2aws3KC3Hg/1589892882/",
+         "poster":"https://frn.rtsp.me/mSSEJmY3fECXfixWlxR98w/1589892882/poster/KPbwo57M.jpg"
+      }
+   ]
+}
+#################################### need help? 112@rtsp.me  ###############################
