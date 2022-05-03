@@ -9,19 +9,15 @@
 # Example: permanent link - rtsp://admin:123456@8.8.8.8:554/11   
 # #
 # location - Data center. 
-# Options: usa , europe , asia.   
+# Options: mia , frn , sn.   
 # #
-#########
-#
-# poster - jpg url  (need ip in your request)
-#
 #########
 $url = 'https://rtsp.me/api/';
 $params = array(
     'email' => 'PUT_EMAIL', 
     'password' => 'PUT_PASSWORD', 
     'rtsp' => 'PUT_RTSP', 
-    'location' => 'usa', 
+    'location' => 'mia', 
 );
 $result = file_get_contents($url, false, stream_context_create(array(
     'http' => array(
@@ -30,23 +26,10 @@ $result = file_get_contents($url, false, stream_context_create(array(
         'content' => http_build_query($params)
     )
 )));
-$json=json_decode($result,yes);
- echo "Your ip - $ip";
-echo "<iframe width='640' height='480' src='{$json[cameras][0][url]}' frameborder='0' allowfullscreen></iframe>";
-echo "<img src='{$json[cameras][0][poster]}'>";
+echo $result;
+# $result -  Broadcasting ID like KPbwo57M
+# https://rtsp.me/embed/KPbwo57M/
 exit;
 ?>
 
-# Example  json response
-
-{
-   "cameras":[
-      {
-         "id":"KPbwo57M",
-         "name":"For Jon from San Antonio",
-         "url":"https://rtsp.me/personal/KPbwo57M/NzcuMjMzLjQuMjQy/NdoVDckKAIlP2aws3KC3Hg/1589892882/",
-         "poster":"https://frn.rtsp.me/mSSEJmY3fECXfixWlxR98w/1589892882/poster/KPbwo57M.jpg"
-      }
-   ]
-}
 #################################### need help? 112@rtsp.me  ###############################
