@@ -48,7 +48,8 @@ curl -d "email=info@mail.kz&password=123456&id=KPbwo57M&ip=77.1.1.242" -X POST h
          "id":"KPbwo57M",
          "name":"For Jon from San Antonio",
          "url":"https://rtsp.me/personal/KPbwo57M/NzcuMjMzLjQuMjQy/NdoVDckKAIlP2aws3KC3Hg/1589892882/",
-         "poster":"https://frn.rtsp.me/mSSEJmY3fECXfixWlxR98w/1589892882/poster/KPbwo57M.jpg"
+         "poster":"https://frn.rtsp.me/mSSEJmY3fECXfixWlxR98w/1589892882/poster/KPbwo57M.jpg",
+         "monthly_counter":"234"
       }
    ]
 }
